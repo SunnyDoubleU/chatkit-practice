@@ -15,7 +15,13 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String
-    }
+    },
+    friendlist: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "user"
+        }
+    ]
 });
 
 const User = mongoose.model("user", userSchema);

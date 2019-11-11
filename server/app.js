@@ -39,9 +39,15 @@ app.use(express.static(path.join(__dirname, "public/build")));
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.URL]
+    origin: "localhost:3000"
   })
 );
+
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
 
 // Chatkit Setup
 global.chatkit = new Chatkit.default({
@@ -72,6 +78,7 @@ app.locals.title = 'Chat With Me';
 
 app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/auth'));
+app.use('/api', require('./routes/user'));
 
 
 module.exports = app;

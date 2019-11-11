@@ -1,25 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from "react-router-dom";
+import Home from "./pages/Home"
+
+import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
+import Login from './pages/Login';
+const tokenProvider = new TokenProvider({
+  url: process.env.REACT_APP_CHATKIT_TOKEN
+});
+const instanceLocator = process.env.REACT_APP_CHATKIT_INSTANCE
+
+require('dotenv').config();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+      </Switch>
+    </>
   );
 }
 
